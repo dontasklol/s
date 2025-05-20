@@ -1,0 +1,130 @@
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
+local function getCharacter()
+    return player.Character or player.CharacterAdded:Wait()
+end
+
+local function getHumanoid()
+    local character = getCharacter()
+    return character:FindFirstChildOfClass("Humanoid")
+end
+
+local speedEnabled = true 
+local jumpEnabled = true 
+local guiVisible = true 
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ice walkspeed"
+screenGui.Parent = game.CoreGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 160, 0, 150)
+frame.Position = UDim2.new(0.5, -80, 0.5, -60)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
+frame.BackgroundTransparency = 0
+frame.Active = true
+frame.Draggable = true
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 8)
+uiCorner.Parent = frame
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0, 20)
+titleLabel.Text = "ice ws and jp"
+titleLabel.TextColor3 = Color3.fromRGB(30, 30, 255)
+titleLabel.BackgroundTransparency = 1
+titleLabel.TextScaled = true
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.Parent = frame
+
+local function createLabel(text, position)
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(0, 70, 0, 20)
+    label.Position = position
+    label.Text = text
+    label.TextColor3 = Color3.fromRGB(30, 30, 20)
+    label.BackgroundTransparency = 1
+    label.Font = Enum.Font.Gotham
+    label.TextScaled = true
+    label.Parent = frame
+    return label
+end
+
+local speedLabel = createLabel("ice walkspeed", UDim2.new(0, 5, 0, 25))
+local speedTextBox = Instance.new("TextBox")
+speedTextBox.Size = UDim2.new(0, 70, 0, 25)
+speedTextBox.Position = UDim2.new(0, 5, 0, 45)
+speedTextBox.Text = "28" -- Default speed set to Da Hood sprint speed
+speedTextBox.Font = Enum.Font.Gotham
+speedTextBox.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
+speedTextBox.TextColor3 = Color3.fromRGB(30, 30, 255)
+speedTextBox.Parent = frame
+
+local jumpLabel = createLabel("ice jump power", UDim2.new(0, 85, 0, 25))
+local jumpTextBox = Instance.new("TextBox")
+jumpTextBox.Size = UDim2.new(0, 70, 0, 25)
+jumpTextBox.Position = UDim2.new(0, 85, 0, 45)
+jumpTextBox.Text = "50"
+jumpTextBox.Font = Enum.Font.Gotham
+jumpTextBox.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
+jumpTextBox.TextColor3 = Color3.fromRGB(30, 30, 255)
+jumpTextBox.Parent = frame
+
+local function createButton(text, position, parent)
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0, 130, 0, 30)
+    button.Position = position
+    button.Text = text
+    button.Font = Enum.Font.GothamBold
+    button.BackgroundColor3 = Color3.fromRGB(30, 30, 60)
+    button.TextColor3 = Color3.fromRGB(30, 30, 255)
+    button.Parent = parent
+    button.Active = true
+    button.Draggable = true
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 6)
+    corner.Parent = button
+    return button
+end
+
+toggleSpeedButton = createButton("ICE WS: ON", UDim2.new(0.5, -65, 0.8, 0), screenGui)
+toggleJumpButton = createButton("ICE JP: ON", UDim2.new(0.5, -65, 0.9, 0), screenGui)
+toggleGuiButton = createButton("Toggle GUI", UDim2.new(0.1, 0, 0.1, 0), screenGui)
+
+local function setAttributes()
+    local humanoid = getHumanoid()
+    if humanoid then
+        humanoid.WalkSpeed = speedEnabled and tonumber(speedTextBox.Text) or 16
+        humanoid.JumpPower = jumpEnabled and tonumber(jumpTextBox.Text) or 50
+    end
+end
+
+toggleSpeedButton.MouseButton1Click:Connect(function()
+    speedEnabled = not speedEnabled
+    toggleSpeedButton.Text = "ice walkspeed: " .. (speedEnabled and "ON" or "OFF")
+    setAttributes()
+end)
+
+toggleJumpButton.MouseButton1Click:Connect(function()
+    jumpEnabled = not jumpEnabled
+    toggleJumpButton.Text = "ice jump power: " .. (jumpEnabled and "ON" or "OFF")
+    setAttributes()
+end)
+
+toggleGuiButton.MouseButton1Click:Connect(function()
+    guiVisible = not guiVisible
+    frame.Visible = guiVisible
+end)
+
+speedTextBox.FocusLost:Connect(setAttributes)
+jumpTextBox.FocusLost:Connect(setAttributes)
+
+RunService.RenderStepped:Connect(setAttributes)
+
+setAttributes()
