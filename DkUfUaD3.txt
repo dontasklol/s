@@ -16,7 +16,7 @@ getgenv().TargetPetNames = {
     "Pot Hotspot",
     "Nuclearo Dinossauro",  
     "Chicleteira Bicicleteira", "Los Combinasionas", "Dragon Cannelloni",
-    "Unclito Samito",
+    "Unclito Samito", "Los hotspotsitos", "Nooo My Hotspot", "Job Job Job sahur", "La Supreme Combinasion",
 }
 
 -- SERVICES
@@ -101,7 +101,6 @@ local function sendWebhook(foundPets, jobId)
                 Body = jsonData
             })
         end)
-        -- Removed all prints/warns here
     end
 end
 
@@ -127,10 +126,7 @@ task.spawn(function()
     while true do
         local petsFound = checkForPets()
         if #petsFound > 0 then
-            -- print("✅ Pets found:", table.concat(petsFound, ", "))
             sendWebhook(petsFound, game.JobId)
-        else
-            -- print("🔍 No pets found")
         end
         task.wait(15)
     end
