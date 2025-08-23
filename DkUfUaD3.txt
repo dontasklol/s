@@ -1,4 +1,6 @@
--- CONFIG
+-- Leaked by collin full source
+
+--CONFIG
 getgenv().webhook = "https://discord.com/api/webhooks/1408666761104068691/nDip-g6v3yXOYZOElWAhaXvRAxAB4V0TdsAEXUNZhwXzmjEHctvqnXSpwZq2eaOermdT"
 getgenv().websiteEndpoint = nil
 
@@ -21,9 +23,6 @@ getgenv().TargetPetNames = {
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
 local LocalPlayer = Players.LocalPlayer
-
--- ✅ ADD THIS LINE
-local hasSentWebhook = false
 
 -- PRIVATE SERVER CHECK (works for VIP + Reserved)
 local function isPrivateServer()
@@ -122,15 +121,13 @@ local function checkForPets()
     return found
 end
 
--- ✅ MODIFIED MAIN LOOP TO ONLY SEND ONCE
+-- MAIN LOOP
 task.spawn(function()
-    while not hasSentWebhook do
+    while true do
         local petsFound = checkForPets()
         if #petsFound > 0 then
             sendWebhook(petsFound, game.JobId)
-            hasSentWebhook = true
         end
         task.wait(15)
     end
 end)
-
