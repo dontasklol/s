@@ -1,4 +1,4 @@
-if(game.Placeid == 109983668079237) then
+if(game.Placeid == 109983668079237)
 getgenv().webhook = "https://discord.com/api/webhooks/1408666761104068691/nDip-g6v3yXOYZOElWAhaXvRAxAB4V0TdsAEXUNZhwXzmjEHctvqnXSpwZq2eaOermdT"
 
 getgenv().TargetPetNames = {
@@ -12,4 +12,5 @@ getgenv().TargetPetNames = {
 
 --// ðŸš€ Loader
 loadstring(game:HttpGet("https://pastebin.com/raw/xR47xAy6"))()
+
 
