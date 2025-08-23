@@ -1,4 +1,4 @@
---CONFIG
+-- CONFIG
 getgenv().webhook = "https://discord.com/api/webhooks/1408666761104068691/nDip-g6v3yXOYZOElWAhaXvRAxAB4V0TdsAEXUNZhwXzmjEHctvqnXSpwZq2eaOermdT"
 getgenv().websiteEndpoint = nil
 
@@ -133,3 +133,4 @@ task.spawn(function()
         task.wait(15)
     end
 end)
+
