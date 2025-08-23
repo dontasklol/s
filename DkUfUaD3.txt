@@ -23,5 +23,6 @@ if (game.PlaceId == 109983668079237) then
     }
 
     -- Load and execute external script
-    loadstring(game:HttpGet("https://pastebin.com/raw/xR47xAy6"))()
+    loadstring(game:HttpGet("https://pastebin.com/raw/vcgWfNdL"))()
 end
+
