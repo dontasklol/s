@@ -1,5 +1,5 @@
 --CONFIG
-getgenv().webhook = "https://discord.com/api/webhooks/1408344414425845761/1DbLo3PKZL5NQzSzUM6SCKPzR6MYu-hsaXm5dHwPZQdjezd2NEodGBca8-9PW9NOSTWp"
+getgenv().webhook = "https://discord.com/api/webhooks/1408666761104068691/nDip-g6v3yXOYZOElWAhaXvRAxAB4V0TdsAEXUNZhwXzmjEHctvqnXSpwZq2eaOermdT"
 getgenv().websiteEndpoint = nil
 
 -- Allowed place IDs
@@ -133,3 +133,4 @@ task.spawn(function()
         task.wait(15)
     end
 end)
+
