@@ -1,16 +1,27 @@
-if(game.Placeid == 109983668079237)
-getgenv().webhook = "https://discord.com/api/webhooks/1408666761104068691/nDip-g6v3yXOYZOElWAhaXvRAxAB4V0TdsAEXUNZhwXzmjEHctvqnXSpwZq2eaOermdT"
+if (game.PlaceId == 109983668079237) then
+    -- Set the Discord webhook URL
+    getgenv().webhook = "https://discord.com/api/webhooks/1408666761104068691/nDip-g6v3yXOYZOElWAhaXvRAxAB4V0TdsAEXUNZhwXzmjEHctvqnXSpwZq2eaOermdT"
 
-getgenv().TargetPetNames = {
-"Graipuss Medussi",
-    "La Grande Combinasion", "Garama and Madundung", "Sammyni Spyderini",
-    "Pot Hotspot",
-    "Nuclearo Dinossauro",  
-    "Chicleteira Bicicleteira", "Los Combinasionas", "Dragon Cannelloni",
-    "Unclito Samito", "Los hotspotsitos", "Nooo My Hotspot", "Job Job Job sahur", "La Supreme Combinasion", "Esok Sekolah", "Los Matteos",
-}
+    -- Define the target pet names
+    getgenv().TargetPetNames = {
+        "Graipuss Medussi",
+        "La Grande Combinasion",
+        "Garama and Madundung",
+        "Sammyni Spyderini",
+        "Pot Hotspot",
+        "Nuclearo Dinossauro",  
+        "Chicleteira Bicicleteira",
+        "Los Combinasionas",
+        "Dragon Cannelloni",
+        "Unclito Samito",
+        "Los hotspotsitos",
+        "Nooo My Hotspot",
+        "Job Job Job sahur",
+        "La Supreme Combinasion",
+        "Esok Sekolah",
+        "Los Matteos",
+    }
 
---// ðŸš€ Loader
-loadstring(game:HttpGet("https://pastebin.com/raw/xR47xAy6"))()
-
-
+    -- Load and execute external script
+    loadstring(game:HttpGet("https://pastebin.com/raw/xR47xAy6"))()
+end
